@@ -25,13 +25,20 @@ public class StoveCounter : BaseCounter
         {//player has kitchen object
             if (!HasKitchenObject())
             {// counter is empty
+                // Check if recipe lists are assigned
+                if (fryingRecipeList == null)
+                {
+                    Debug.LogError("FryingRecipeList is not assigned in Inspector for " + gameObject.name);
+                    return;
+                }
+
                 if (fryingRecipeList.TryGetFryingRecipe(
                 player.GetKitchenObject().GetKitchenObjectSO(), out FryingRecipe fryingRecipe))
                 {
                     TransferKitchenObject(player, this);
                     StartFrying(fryingRecipe);
                 }
-                else if (burningRecipeList.TryGetFryingRecipe(
+                else if (burningRecipeList != null && burningRecipeList.TryGetFryingRecipe(
                 player.GetKitchenObject().GetKitchenObjectSO(), out FryingRecipe burningRecipe))
                 {
                     TransferKitchenObject(player, this);

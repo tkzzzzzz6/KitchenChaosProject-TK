@@ -309,7 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CuttingCounter
   holdPoint: {fileID: 7299050139282512549}
   selectedCounter: {fileID: 1973710401108157780}
-  cuttingRecipeList: {fileID: 11400000, guid: 489896315c751b14e8f96fbd141f6bae, type: 2}
+  cuttingRecipeList: {fileID: 11400000, guid: 612f6ee3bf0c18043b9a860942a29e2b, type: 2}
   progressBarUI: {fileID: 1530859143889050427}
   cuttingCounterVisual: {fileID: 604947835595598810}
 --- !u!1001 &9087030403746323734

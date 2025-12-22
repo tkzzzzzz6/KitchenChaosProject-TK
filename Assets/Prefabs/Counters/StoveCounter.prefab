@@ -360,8 +360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoveCounter
   holdPoint: {fileID: 2141619943945816350}
   selectedCounter: {fileID: 3917613087892491942}
-  fryingRecipeList: {fileID: 11400000, guid: 19faca76179815249b22fc1a28697c7d, type: 2}
-  burningRecipeList: {fileID: 11400000, guid: 89b3f6abb6f026a45888658fb03f53d8, type: 2}
+  fryingRecipeList: {fileID: 11400000, guid: e212e840aa1e5514fa93bc3905dabb65, type: 2}
+  burningRecipeList: {fileID: 11400000, guid: 90eb22ffce1645f438303f220f917ee4, type: 2}
   stoveCounterVisual: {fileID: 3780354869257904760}
   progressBarUI: {fileID: 4372653377944910519}
   sound: {fileID: 3979530516522289283}
