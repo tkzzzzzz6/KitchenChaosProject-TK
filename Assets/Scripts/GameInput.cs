@@ -105,9 +105,20 @@ public class GameInput : MonoBehaviour
     {
         Instance = this;
         gameControl = new GameControl();
+
+        // Debug: Log current bindings to check if they're loaded correctly
+        // TEMPORARY FIX: Uncomment the line below to force reset bindings for testing
+        // PlayerPrefs.DeleteKey(GAMEINPUT_BINDINGS);
+
         if (PlayerPrefs.HasKey(GAMEINPUT_BINDINGS))
         {
-            gameControl.LoadBindingOverridesFromJson(PlayerPrefs.GetString(GAMEINPUT_BINDINGS));
+            string bindings = PlayerPrefs.GetString(GAMEINPUT_BINDINGS);
+            Debug.Log("Loading custom bindings: " + bindings);
+            gameControl.LoadBindingOverridesFromJson(bindings);
+        }
+        else
+        {
+            Debug.Log("Using default bindings - no custom bindings found");
         }
 
         if (ignoreJoystickAndXRForMove)
