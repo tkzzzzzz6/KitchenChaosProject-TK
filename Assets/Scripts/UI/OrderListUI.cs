@@ -35,7 +35,7 @@ public class OrderListUI : MonoBehaviour
         foreach (RecipeSO recipeSO in recipeSOList)
         {
             RecipeUI recipeUI = GameObject.Instantiate(recipeUITemplate);
-            recipeUI.transform.SetParent(recipeParent);
+            recipeUI.transform.SetParent(recipeParent, false);
             recipeUI.gameObject.SetActive(true);
             recipeUI.UpdateUI(recipeSO);
         }

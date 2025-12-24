@@ -19,7 +19,7 @@ public class RecipeUI : MonoBehaviour
         foreach(KitchenObjectSO kitchenObjectSO in recipeSO.kitchenObjectSOList)
         {
             Image newIcon = GameObject.Instantiate(iconUITemplate);
-            newIcon.transform.SetParent(kitchenObjectParent);
+            newIcon.transform.SetParent(kitchenObjectParent, false);
             newIcon.sprite = kitchenObjectSO.sprite;
             newIcon.gameObject.SetActive(true);
         }
