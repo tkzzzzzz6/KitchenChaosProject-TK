@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fd484a2157b36ae48a91d1e0de3b7073, type: 3}
   m_Name: BurningRecipeList
   m_EditorClassIdentifier: Assembly-CSharp::FryingRecipeListSO
   list:

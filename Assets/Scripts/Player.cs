@@ -250,10 +250,12 @@ public class Player : KitchenObjectHolder
     }
     private void GameInput_OnInteractAction(object sender, EventArgs e)
     {
+        Debug.Log($"👉 Player received Interact event. SelectedCounter: {selectedCounter?.GetType().Name ?? "None"}");
         selectedCounter?.Interact(this);
     }
     private void GameInput_OnOperateAction(object sender, EventArgs e)
     {
+        Debug.Log($"🔨 Player received Operate event. SelectedCounter: {selectedCounter?.GetType().Name ?? "None"}");
         selectedCounter?.InteractOperate(this);
     }
 

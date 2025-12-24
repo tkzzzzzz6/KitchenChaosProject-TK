@@ -50,6 +50,17 @@ public class GameInput : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets all input bindings to default values
+    /// </summary>
+    public void ResetAllBindings()
+    {
+        Debug.Log("Resetting all input bindings to default");
+        gameControl.RemoveAllBindingOverrides();
+        PlayerPrefs.DeleteKey(GAMEINPUT_BINDINGS);
+        PlayerPrefs.Save();
+    }
+
     public void ReBanding(BindingType bindingType, Action OnComplete)
     {
 
@@ -110,15 +121,29 @@ public class GameInput : MonoBehaviour
         // TEMPORARY FIX: Uncomment the line below to force reset bindings for testing
         // PlayerPrefs.DeleteKey(GAMEINPUT_BINDINGS);
 
+        // Press DELETE key on startup to reset all bindings (for debugging)
+        if (Keyboard.current != null && Keyboard.current.deleteKey.isPressed)
+        {
+            Debug.LogWarning("DELETE key detected - Resetting all input bindings to default!");
+            PlayerPrefs.DeleteKey(GAMEINPUT_BINDINGS);
+            PlayerPrefs.Save();
+        }
+
         if (PlayerPrefs.HasKey(GAMEINPUT_BINDINGS))
         {
             string bindings = PlayerPrefs.GetString(GAMEINPUT_BINDINGS);
             Debug.Log("Loading custom bindings: " + bindings);
             gameControl.LoadBindingOverridesFromJson(bindings);
+
+            // Debug: Log what E and F keys are bound to
+            Debug.Log($"Interact key binding: {gameControl.Player.Interact.bindings[0].effectivePath}");
+            Debug.Log($"Operate key binding: {gameControl.Player.Operate.bindings[0].effectivePath}");
         }
         else
         {
             Debug.Log("Using default bindings - no custom bindings found");
+            Debug.Log($"Default Interact: {gameControl.Player.Interact.bindings[0].effectivePath}");
+            Debug.Log($"Default Operate: {gameControl.Player.Operate.bindings[0].effectivePath}");
         }
 
         if (ignoreJoystickAndXRForMove)
@@ -148,11 +173,13 @@ public class GameInput : MonoBehaviour
 
     private void Operate_Performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        Debug.Log($"🔧 Operate_Performed triggered! Key: {obj.control.name}, Time: {Time.time}");
         OnOperateAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Interact_Performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        Debug.Log($"👆 Interact_Performed triggered! Key: {obj.control.name}, Time: {Time.time}");
         OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 

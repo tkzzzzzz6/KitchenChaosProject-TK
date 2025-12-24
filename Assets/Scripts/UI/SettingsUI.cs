@@ -21,6 +21,7 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Button interactKeyButton;
     [SerializeField] private Button operateKeyButton;
     [SerializeField] private Button pauseKeyButton;
+    [SerializeField] private Button resetBindingsButton;
 
     [SerializeField] private TextMeshProUGUI upKeyButtonText;
     [SerializeField] private TextMeshProUGUI downKeyButtonText;
@@ -62,6 +63,17 @@ public class SettingsUI : MonoBehaviour
         interactKeyButton.onClick.AddListener(() =>{ReBinding(GameInput.BindingType.Interact);});
         operateKeyButton.onClick.AddListener(() => {ReBinding(GameInput.BindingType.Operate);});
         pauseKeyButton.onClick.AddListener(() =>{ReBinding(GameInput.BindingType.Pause);});
+
+        // Reset all bindings button
+        if (resetBindingsButton != null)
+        {
+            resetBindingsButton.onClick.AddListener(() =>
+            {
+                GameInput.Instance.ResetAllBindings();
+                UpdateVisual();
+                Debug.Log("所有按键绑定已重置为默认值");
+            });
+        }
     }
     private void ReBinding(GameInput.BindingType bindingType)
     {

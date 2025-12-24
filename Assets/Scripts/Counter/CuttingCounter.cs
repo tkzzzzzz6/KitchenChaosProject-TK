@@ -45,8 +45,16 @@ public class CuttingCounter : BaseCounter
     {
         if (HasKitchenObject())
         {
+            // Check if recipe list is assigned
+            if (cuttingRecipeList == null)
+            {
+                Debug.LogError($"❌ CuttingRecipeList is NOT assigned on {gameObject.name}! Cannot cut items.");
+                return;
+            }
+
             if (cuttingRecipeList.TryGetCuttingRecipe(GetKitchenObject().GetKitchenObjectSO(), out CuttingRecipe cuttingRecipe))
             {
+                Debug.Log($"✂️ Cutting {GetKitchenObject().GetKitchenObjectSO().name} on {gameObject.name}");
                 Cut();
                 progressBarUI.UpdateProgress((float)cuttingCount / cuttingRecipe.cuttingCountMax);
 
@@ -56,7 +64,10 @@ public class CuttingCounter : BaseCounter
                     CreateKitchenObject(cuttingRecipe.output.prefab);
                 }
             }
-
+            else
+            {
+                Debug.LogWarning($"⚠️ No cutting recipe found for {GetKitchenObject().GetKitchenObjectSO().name}");
+            }
         }
     }
 
@@ -66,7 +77,7 @@ public class CuttingCounter : BaseCounter
         ++cuttingCount;
         cuttingCounterVisual.PlayCut();
     }
-    public static void ClearStaticDate()
+    public new static void ClearStaticDate()
     {
         OnCut = null;
     }
